@@ -45,14 +45,15 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
-local background = hsl(29, 18, 12)
-local brown = hsl(33, 28, 62)
+local background = hsl(30, 19, 9)
+local brown = hsl(33, 19, 40)
 local beige = hsl(31, 24, 95)
 -- local gold = hsl(45, 63, 80)
 local gold = brown
 local bg = hsl(224, 27, 21)
-local light_blue = hsl(100, 29, 73)
-local red = hsl(104, 23, 49)
+local type = hsl(31, 24, 66)
+-- local type = hsl(133, 22, 63)
+local string = hsl(104, 23, 33)
 
 local theme = lush(function()
   return {
@@ -68,7 +69,7 @@ local theme = lush(function()
     -- styling for that group (meaning they mostly get styled as Normal)
     -- or leave them commented to apply vims default colouring or linking.
 
-    Comment      { fg=red.darken(40) }, -- any comment
+    Comment      { fg=string.darken(40) }, -- any comment
     -- ColorColumn  { }, -- used for the columns set with 'colorcolumn'
     -- Conceal      { }, -- placeholder characters substituted for concealed text (see 'conceallevel')
     -- Cursor       { }, -- character under the cursor
@@ -102,7 +103,7 @@ local theme = lush(function()
     Normal       { bg = background, fg = brown }, -- normal text
     -- NormalFloat  { }, -- Normal text in floating windows.
     -- NormalNC     { }, -- normal text in non-current windows
-    Pmenu        { fg=bg, bg=light_blue.darken(20) }, -- Popup menu: normal item.
+    Pmenu        { fg=bg, bg=type.darken(20) }, -- Popup menu: normal item.
     PmenuSel     { }, -- Popup menu: selected item.
     -- PmenuSbar    { }, -- Popup menu: scrollbar.
     PmenuThumb   { }, -- Popup menu: Thumb of the scrollbar.
@@ -132,17 +133,17 @@ local theme = lush(function()
     -- default,
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Constant       { fg = red }, -- (preferred) any constant
-    String         { fg = red }, --   a string constant: "this is a string"
-    -- Character      { String }, --  a character constant: 'c', '\n'
-    -- Number         { String }, --   a number constant: 234, 0xff
-    -- Boolean        { }, --  a boolean constant: TRUE, false
-    -- Float          { }, --    a floating point constant: 2.3e10
+    Constant       { fg = string }, -- (preferred) any constant
+    String         { fg = string }, --   a string constant: "this is a string"
+    Character      { String }, --  a character constant: 'c', '\n'
+    Number         { String }, --   a number constant: 234, 0xff
+    Boolean        { }, --  a boolean constant: TRUE, false
+    Float          { }, --    a floating point constant: 2.3e10
 
     Identifier     { Normal }, -- (preferred) any variable name
     Function       {}, -- function name (also: methods for classes)
 
-    Statement      { fg = light_blue }, -- (preferred) any statement
+    Statement      { fg = brown }, -- (preferred) any statement
     Conditional    { }, --  if, then, else, endif, switch, etc.
     Repeat         { }, --   for, do, while, etc.
     -- Label          { }, --    case, default, etc.
@@ -150,23 +151,23 @@ local theme = lush(function()
     Keyword        { fg = brown }, --  any other keyword
     -- Exception      { }, --  try, catch, throw
 
-    -- PreProc        { }, -- (preferred) generic Preprocessor
-    -- Include        { }, --  preprocessor #include
-    -- Define         { }, --   preprocessor #define
-    -- Macro          { }, --    same as Define
-    -- PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
+    PreProc        { }, -- (preferred) generic Preprocessor
+    Include        { }, --  preprocessor #include
+    Define         { }, --   preprocessor #define
+    Macro          { }, --    same as Define
+    PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = brown }, -- (preferred) int, long, char, etc.
-    -- StorageClass   { }, -- static, register, volatile, etc.
-    -- Structure      { }, --  struct, union, enum, etc.
-    -- Typedef        { }, --  A typedef
+    Type           { fg = type }, -- (preferred) int, long, char, etc.
+    StorageClass   { }, -- static, register, volatile, etc.
+    Structure      { }, --  struct, union, enum, etc.
+    Typedef        { }, --  A typedef
 
     Special        {}, -- (preferred) any special symbol
-    -- SpecialChar    { }, --  special character in a constant
-    -- Tag            { }, --    you can use CTRL-] on this
-    -- Delimiter      { }, --  character that needs attention
-    -- SpecialComment { }, -- special things inside a comment
-    -- Debug          { }, --    debugging statements
+    SpecialChar    { }, --  special character in a constant
+    Tag            { }, --    you can use CTRL-] on this
+    Delimiter      { }, --  character that needs attention
+    SpecialComment { }, -- special things inside a comment
+    Debug          { }, --    debugging statements
 
     -- Underlined { gui = "underline" }, -- (preferred) text that stands out, HTML links
     -- Bold       { gui = "bold" },
