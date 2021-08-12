@@ -45,15 +45,18 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
-local background = hsl(30, 19, 9)
-local brown = hsl(33, 19, 40)
+-- local background = hsl(188, 9, 9)
+local background = hsl(30, 10, 11)
+local brown = hsl(31, 17, 51)
+-- local brown = hsl(33, 16, 36)
 local beige = hsl(31, 24, 95)
 -- local gold = hsl(45, 63, 80)
 local gold = brown
 local bg = hsl(224, 27, 21)
-local type = hsl(31, 24, 66)
+local type = hsl(71, 22, 44)
+-- local type = hsl(31, 24, 66)
 -- local type = hsl(133, 22, 63)
-local string = hsl(104, 23, 33)
+local string = hsl(90, 16, 42)
 
 local theme = lush(function()
   return {
@@ -75,7 +78,7 @@ local theme = lush(function()
     -- Cursor       { }, -- character under the cursor
     -- lCursor      { }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
-    -- CursorColumn { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.c
+    CursorColumn { bg=brown.darken(50) }, -- Screen-column at the cursor, when 'cursorcolumn' is set.c
     CursorLine   { }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory    { fg = gold }, -- directory names (and other special names in listings)
     -- DiffAdd      { }, -- diff mode: Added line |diff.txt|
@@ -89,7 +92,7 @@ local theme = lush(function()
     -- VertSplit    { }, -- the column separating vertically split windows
     -- Folded       { }, -- line used for closed folds
     -- FoldColumn   { }, -- 'foldcolumn'
-    -- SignColumn   { }, -- column where |signs| are displayed
+    SignColumn   { bg=background.lighten(3)}, -- column where |signs| are displayed
     -- IncSearch    { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     -- Substitute   { }, -- |:substitute| replacement text highlighting
     -- LineNr       { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
@@ -99,33 +102,33 @@ local theme = lush(function()
     -- MsgArea      { }, -- Area for messages and cmdline
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg      { }, -- |more-prompt|
-    -- NonText      { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    NonText      { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     Normal       { bg = background, fg = brown }, -- normal text
     -- NormalFloat  { }, -- Normal text in floating windows.
     -- NormalNC     { }, -- normal text in non-current windows
-    Pmenu        { fg=bg, bg=type.darken(20) }, -- Popup menu: normal item.
+    Pmenu        { fg=bg.darken(100), bg=brown.darken(30) }, -- Popup menu: normal item.
     PmenuSel     { }, -- Popup menu: selected item.
-    -- PmenuSbar    { }, -- Popup menu: scrollbar.
+    PmenuSbar    { }, -- Popup menu: scrollbar.
     PmenuThumb   { }, -- Popup menu: Thumb of the scrollbar.
-    -- Question     { }, -- |hit-enter| prompt and yes/no questions
-    -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    -- Search       { }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-    -- SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
-    -- SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise. 
-    -- SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-    -- SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-    -- SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-    -- StatusLine   { }, -- status line of current window
-    -- StatusLineNC { }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    -- TabLine      { }, -- tab pages line, not active tab page label
-    -- TabLineFill  { }, -- tab pages line, where there are no labels
-    -- TabLineSel   { }, -- tab pages line, active tab page label
-    -- Title        { }, -- titles for output from ":set all", ":autocmd" etc.
-    -- Visual       { }, -- Visual mode selection
-    -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
-    -- WarningMsg   { }, -- warning messages
-    -- Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
-    -- WildMenu     { }, -- current match in 'wildmenu' completion
+    Question     { }, -- |hit-enter| prompt and yes/no questions
+    QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+    Search       { }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+    SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise. 
+    SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+    SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+    SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
+    StatusLine   { fg= brown.darken(20), bg=brown.darken(60) }, -- status line of current window
+    StatusLineNC { fg= brown.darken(40), bg=brown.darken(70)  }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    TabLine      { }, -- tab pages line, not active tab page label
+    TabLineFill  { }, -- tab pages line, where there are no labels
+    TabLineSel   { }, -- tab pages line, active tab page label
+    Title        { }, -- titles for output from ":set all", ":autocmd" etc.
+    Visual       { bg=brown, fg=background}, -- Visual mode selection
+    VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
+    WarningMsg   { }, -- warning messages
+    Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
+    WildMenu     { }, -- current match in 'wildmenu' completion
 
     -- These groups are not listed as default vim groups,
     -- but they are defacto standard group names for syntax highlighting.
