@@ -45,8 +45,9 @@
 local lush = require('lush')
 local hsl = lush.hsluv
 
-local background = hsl(182,35,15)
-local text = hsl(52, 43, 71)
+local background = hsl(81,19,12)
+local text = hsl("#D5C4A1").darken(21)
+-- local text = hsl(52, 43, 71)
 local string = text
 local blue = hsl("#EDFFFF")
 local cursor_line = hsl(12,0,30)
@@ -72,7 +73,7 @@ local theme = lush(function()
     -- lCursor      { }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
     CursorColumn {}, -- Screen-column at the cursor, when 'cursorcolumn' is set.c
-    CursorLine   { bg=cursor_line }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorLine   { bg=background.lighten(3) }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory    { fg = text }, -- directory names (and other special names in listings)
     -- DiffAdd      { }, -- diff mode: Added line |diff.txt|
     -- DiffChange   { }, -- diff mode: Changed line |diff.txt|
