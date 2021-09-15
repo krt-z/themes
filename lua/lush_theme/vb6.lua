@@ -97,8 +97,8 @@ local theme = lush(function()
     Normal       { bg = white, fg = black }, -- normal text
     NormalFloat  { }, -- Normal text in floating windows.
     NormalNC     { }, -- normal text in non-current windows
-    Pmenu        {}, -- Popup menu: normal item.
-    PmenuSel     { }, -- Popup menu: selected item.
+    Pmenu        { bg = hsl(0,0,90) }, -- Popup menu: normal item.
+    PmenuSel     {  bg = hsl(29,20,74)  }, -- Popup menu: selected item.
     PmenuSbar    { }, -- Popup menu: scrollbar.
     PmenuThumb   { }, -- Popup menu: Thumb of the scrollbar.
     Question     { }, -- |hit-enter| prompt and yes/no questions
@@ -170,7 +170,7 @@ local theme = lush(function()
     -- ("Ignore", below, may be invisible...)
     -- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
 
-    -- Error          { }, -- (preferred) any erroneous construct
+    Error          { }, -- (preferred) any erroneous construct
 
     Todo           { }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
