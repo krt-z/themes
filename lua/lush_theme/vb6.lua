@@ -115,7 +115,7 @@ local theme = lush(function()
     TabLineFill  { }, -- tab pages line, where there are no labels
     TabLineSel   { }, -- tab pages line, active tab page label
     Title        { }, -- titles for output from ":set all", ":autocmd" etc.
-    Visual       { }, -- Visual mode selection
+    Visual       { bg = Pmenu.bg}, -- Visual mode selection
     VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
     WarningMsg   { }, -- warning messages
     Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
