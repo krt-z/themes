@@ -45,15 +45,13 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
--- local background = hsl(188, 9, 9)
-local background = hsl(30, 10, 11)
-local brown = hsl(31, 17, 51)
--- local brown = hsl(33, 16, 36)
+-- local background = hsl(30, 10, 13)
+local background = hsl(200, 27, 12)
+local brown = hsl(30, 21, 51)
 local beige = hsl(31, 24, 95)
--- local gold = hsl(45, 63, 80)
-local gold = brown
 local bg = hsl(224, 27, 21)
 local type = hsl(71, 22, 44)
+local type = hsl(106, 21, 51)
 -- local type = hsl(31, 24, 66)
 -- local type = hsl(133, 22, 63)
 local string = hsl(90, 16, 42)
@@ -80,7 +78,7 @@ local theme = lush(function()
     -- CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
     CursorColumn { bg=brown.darken(50) }, -- Screen-column at the cursor, when 'cursorcolumn' is set.c
     CursorLine   { }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-    Directory    { fg = gold }, -- directory names (and other special names in listings)
+    Directory    { fg = brown }, -- directory names (and other special names in listings)
     -- DiffAdd      { }, -- diff mode: Added line |diff.txt|
     -- DiffChange   { }, -- diff mode: Changed line |diff.txt|
     -- DiffDelete   { }, -- diff mode: Deleted line |diff.txt|
@@ -160,7 +158,7 @@ local theme = lush(function()
     Macro          { }, --    same as Define
     PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = brown }, -- (preferred) int, long, char, etc.
+    Type           { fg = type }, -- (preferred) int, long, char, etc.
     StorageClass   { }, -- static, register, volatile, etc.
     Structure      { }, --  struct, union, enum, etc.
     Typedef        { }, --  A typedef

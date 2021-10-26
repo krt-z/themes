@@ -51,6 +51,7 @@ local text = hsl(0, 0, 0)
 local string = text
 local blue = hsl("#EDFFFF")
 local cursor_line = hsl("#F3F3D3").lighten(5)
+local select = hsl("#EEEC9E")
 
 local theme = lush(function()
   return {
@@ -113,12 +114,13 @@ local theme = lush(function()
     SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     StatusLine   { bg=blue}, -- status line of current window
-    StatusLineNC { bg=cursor_line.darken(0) }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    StatusLineNC { bg=select.lighten(40) }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     TabLine      { }, -- tab pages line, not active tab page label
     TabLineFill  { }, -- tab pages line, where there are no labels
     TabLineSel   { }, -- tab pages line, active tab page label
     Title        { }, -- titles for output from ":set all", ":autocmd" etc.
-    Visual       { bg=cursor_line.darken(5), fg=text}, -- Visual mode selection
+    -- Visual       { bg=cursor_line.darken(5), fg=text}, -- Visual mode selection
+    Visual       { bg=select, fg=text}, -- Visual mode selection
     VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
     WarningMsg   { }, -- warning messages
     Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
