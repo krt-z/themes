@@ -47,14 +47,13 @@ local hsl = lush.hsl
 
 -- local background = hsl(30, 10, 13)
 local background = hsl(200, 27, 12)
-local brown = hsl(30, 21, 51)
+local brown = hsl(30, 21, 65)
 local beige = hsl(31, 24, 95)
 local bg = hsl(224, 27, 21)
 local type = hsl(71, 22, 44)
-local type = hsl(106, 21, 51)
+local type = hsl(106, 21, 55)
 -- local type = hsl(31, 24, 66)
--- local type = hsl(133, 22, 63)
-local string = hsl(90, 16, 42)
+local string = hsl(190, 21, 55)
 
 local theme = lush(function()
   return {
@@ -135,7 +134,7 @@ local theme = lush(function()
     -- Uncomment and edit if you want more specific syntax highlighting.
 
     Constant       { fg = brown }, -- (preferred) any constant
-    String         { fg = brown }, --   a string constant: "this is a string"
+    String         { fg = string }, --   a string constant: "this is a string"
     Character      { String }, --  a character constant: 'c', '\n'
     Number         { String }, --   a number constant: 234, 0xff
     Boolean        { }, --  a boolean constant: TRUE, false
