@@ -152,7 +152,7 @@ local theme = lush(function()
     -- Exception      { }, --  try, catch, throw
 
     -- PreProc        { }, -- (preferred) generic Preprocessor
-    -- Include        { }, --  preprocessor #include
+    Include        { fg = gold }, --  preprocessor #include
     -- Define         { }, --   preprocessor #define
     -- Macro          { }, --    same as Define
     -- PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
