@@ -104,7 +104,7 @@ local theme = lush(function()
 		Normal({ bg = background, fg = text }), -- normal text
 		-- NormalFloat  { }, -- Normal text in floating windows.
 		-- NormalNC     { }, -- normal text in non-current windows
-		Pmenu({ bg = cursor_line.darken(8) }), -- Popup menu: normal item.
+		Pmenu({ bg = text, fg = background }), -- Popup menu: normal item.
 		PmenuSel({ bg = Pmenu.bg.lighten(50) }), -- Popup menu: selected item.
 		PmenuSbar({}), -- Popup menu: scrollbar.
 		PmenuThumb({}), -- Popup menu: Thumb of the scrollbar.
@@ -116,8 +116,8 @@ local theme = lush(function()
 		SpellCap({}), -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
 		SpellLocal({}), -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 		SpellRare({}), -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-		StatusLine({ bg = blue }), -- status line of current window
-		StatusLineNC({ bg = select.lighten(40) }), -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+		StatusLine({ bg = text.darken(10), fg = background }), -- status line of current window
+		StatusLineNC({ bg = text.darken(40) }), -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		TabLine({}), -- tab pages line, not active tab page label
 		TabLineFill({}), -- tab pages line, where there are no labels
 		TabLineSel({}), -- tab pages line, active tab page label
