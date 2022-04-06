@@ -146,11 +146,11 @@ local theme = lush(function()
 		Function({}), -- function name (also: methods for classes)
 
 		Statement({}), -- (preferred) any statement
-		Conditional({}), --  if, then, else, endif, switch, etc.
-		Repeat({}), --   for, do, while, etc.
+		Conditional({ fg = white }), --  if, then, else, endif, switch, etc.
+		Repeat(Conditional), --   for, do, while, etc.
 		-- Label          { }, --    case, default, etc.
-		Operator({}), -- "sizeof", "+", "*", etc.
-		Keyword({ fg = white }), --  any other keyword
+		Operator(Conditional), -- "sizeof", "+", "*", etc.
+		Keyword(Conditional), --  any other keyword
 		-- Exception      { }, --  try, catch, throw
 
 		PreProc({}), -- (preferred) generic Preprocessor
