@@ -139,8 +139,8 @@ local theme = lush(function()
 		String({ fg = string }), --   a string constant: "this is a string"
 		Character({}), --  a character constant: 'c', '\n'
 		Number({ fg = constant }), --   a number constant: 234, 0xff
-		Boolean({}), --  a boolean constant: TRUE, false
-		Float({}), --    a floating point constant: 2.3e10
+		Boolean(Number), --  a boolean constant: TRUE, false
+		Float(Number), --    a floating point constant: 2.3e10
 
 		Identifier({}), -- (preferred) any variable name
 		Function({}), -- function name (also: methods for classes)
@@ -154,7 +154,7 @@ local theme = lush(function()
 		-- Exception      { }, --  try, catch, throw
 
 		PreProc({}), -- (preferred) generic Preprocessor
-		Include({}), --  preprocessor #include
+		Include({ fg = white }), --  preprocessor #include
 		Define({}), --   preprocessor #define
 		Macro({}), --    same as Define
 		PreCondit({}), --  preprocessor #if, #else, #endif, etc.
