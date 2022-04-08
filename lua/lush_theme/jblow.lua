@@ -143,7 +143,7 @@ local theme = lush(function()
 		Float(Number), --    a floating point constant: 2.3e10
 
 		Identifier({}), -- (preferred) any variable name
-		Function({}), -- function name (also: methods for classes)
+		-- Function({ fg = hsl(0,0,47) }), -- function name (also: methods for classes)
 
 		Statement({}), -- (preferred) any statement
 		Conditional({ fg = white }), --  if, then, else, endif, switch, etc.
