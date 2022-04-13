@@ -46,11 +46,11 @@ local lush = require("lush")
 local hsl = lush.hsl
 
 local background = hsl("#F3F2EE")
-local text = hsl(0, 0, 23)
+local text = hsl(0, 0, 27)
 local string = hsl(169, 46, 55)
 local blue = hsl("#EDFFFF")
 local cursor_line = hsl("#ECEBE4") -- background.lighten(2)
--- local select = hsl("#EEEC9E")
+local menu = hsl("#EEEC9E")
 local select = blue
 local comment = text.lighten(35)
 local white = hsl(0, 0, 78)
@@ -105,7 +105,7 @@ local theme = lush(function()
 		Normal({ bg = background, fg = text }), -- normal text
 		-- NormalFloat  { }, -- Normal text in floating windows.
 		-- NormalNC     { }, -- normal text in non-current windows
-		Pmenu({ bg = text, fg = background }), -- Popup menu: normal item.
+		Pmenu({ bg = menu, fg = text }), -- Popup menu: normal item.
 		PmenuSel({ bg = Pmenu.bg.lighten(50) }), -- Popup menu: selected item.
 		PmenuSbar({}), -- Popup menu: scrollbar.
 		PmenuThumb({}), -- Popup menu: Thumb of the scrollbar.
