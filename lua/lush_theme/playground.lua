@@ -43,17 +43,19 @@
 --  `:lua require('lush').ify()`
 
 local lush = require("lush")
-local hsl = lush.hsluv
+local hsl = lush.hsl
 
-local background = hsl(268, 40, 17)
-local text = hsl(257, 78, 60)
-
--- local background = hsl(81, 19, 12)
--- local text = hsl("#D5C4A1").darken(21)
-
--- local text = hsl(52, 43, 71)
+local background = hsl("#F3F2EE")
+local text = hsl(0, 0, 23)
+local string = hsl(169, 46, 55)
 local blue = hsl("#EDFFFF")
-local cursor_line = hsl(12, 0, 30)
+local cursor_line = hsl("#ECEBE4") -- background.lighten(2)
+-- local select = hsl("#EEEC9E")
+local select = blue
+local comment = text.lighten(35)
+local white = hsl(0, 0, 78)
+local type = hsl(140, 32, 68)
+local constant = string.lighten(44)
 
 local theme = lush(function()
 	return {
@@ -69,14 +71,14 @@ local theme = lush(function()
 		-- styling for that group (meaning they mostly get styled as Normal)
 		-- or leave them commented to apply vims default colouring or linking.
 
-		Comment({ fg = text.darken(30) }), -- any comment
+		Comment({ fg = comment }), -- any comment
 		-- ColorColumn  { }, -- used for the columns set with 'colorcolumn'
 		-- Conceal      { }, -- placeholder characters substituted for concealed text (see 'conceallevel')
 		-- Cursor       { }, -- character under the cursor
 		-- lCursor      { }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
 		-- CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
 		CursorColumn({}), -- Screen-column at the cursor, when 'cursorcolumn' is set.c
-		CursorLine({ bg = background.lighten(3) }), -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+		CursorLine({ bg = cursor_line }), -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
 		Directory({ fg = text }), -- directory names (and other special names in listings)
 		-- DiffAdd      { }, -- diff mode: Added line |diff.txt|
 		-- DiffChange   { }, -- diff mode: Changed line |diff.txt|
@@ -90,7 +92,7 @@ local theme = lush(function()
 		-- Folded       { }, -- line used for closed folds
 		-- FoldColumn   { }, -- 'foldcolumn'
 		SignColumn({ bg = background.lighten(3) }), -- column where |signs| are displayed
-		-- IncSearch    { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+		IncSearch({ bg = blue }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		-- Substitute   { }, -- |:substitute| replacement text highlighting
 		-- LineNr       { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		-- CursorLineNr { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
@@ -103,25 +105,26 @@ local theme = lush(function()
 		Normal({ bg = background, fg = text }), -- normal text
 		-- NormalFloat  { }, -- Normal text in floating windows.
 		-- NormalNC     { }, -- normal text in non-current windows
-		Pmenu({ bg = cursor_line.darken(8) }), -- Popup menu: normal item.
+		Pmenu({ bg = text, fg = background }), -- Popup menu: normal item.
 		PmenuSel({ bg = Pmenu.bg.lighten(50) }), -- Popup menu: selected item.
 		PmenuSbar({}), -- Popup menu: scrollbar.
 		PmenuThumb({}), -- Popup menu: Thumb of the scrollbar.
 		Question({}), -- |hit-enter| prompt and yes/no questions
 		QuickFixLine({}), -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-		Search({}), -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+		Search({ bg = blue }), -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
 		SpecialKey({}), -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
 		SpellBad({}), -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
 		SpellCap({}), -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
 		SpellLocal({}), -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 		SpellRare({}), -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-		StatusLine({ bg = background.lighten(20) }), -- status line of current window
-		StatusLineNC({ bg = background.lighten(5) }), -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+		StatusLine({ bg = text.darken(50), fg = background }), -- status line of current window
+		StatusLineNC({ bg = text.lighten(30) }), -- status lines of not-current windows Note: if this is equal to "StatusLine" lighten will use "^^^" in the status line of the current window.
 		TabLine({}), -- tab pages line, not active tab page label
 		TabLineFill({}), -- tab pages line, where there are no labels
 		TabLineSel({}), -- tab pages line, active tab page label
 		Title({}), -- titles for output from ":set all", ":autocmd" etc.
-		Visual({ bg = cursor_line.darken(5), fg = text }), -- Visual mode selection
+		-- Visual       { bg=cursor_line.darken(5), fg=text}, -- Visual mode selection
+		Visual({ bg = select, fg = text }), -- Visual mode selection
 		VisualNOS({}), -- Visual mode selection when vim is "Not Owning the Selection".
 		WarningMsg({}), -- warning messages
 		Whitespace({}), -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -133,33 +136,33 @@ local theme = lush(function()
 		-- default,
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		String({}), --   a string constant: "this is a string"
 		Constant({}), -- (preferred) any constant
+		String({ fg = text }), --   a string constant: "this is a string"
 		Character({}), --  a character constant: 'c', '\n'
-		Number({}), --   a number constant: 234, 0xff
-		Boolean({}), --  a boolean constant: TRUE, false
-		Float({}), --    a floating point constant: 2.3e10
+		Number({ fg = text }), --   a number constant: 234, 0xff
+		Boolean(Number), --  a boolean constant: TRUE, false
+		Float(Number), --    a floating point constant: 2.3e10
 
 		Identifier({}), -- (preferred) any variable name
+		-- Function({ fg = hsl(0,0,47) }), -- function name (also: methods for classes)
 
-		-- Keyword({ fg = hsl(29, 20, 53) }), --  any other keyword
-		Keyword({}), --  any other keyword
 		Statement({}), -- (preferred) any statement
-		Conditional({}), --  if, then, else, endif, switch, etc.
-		Repeat({ Keyword }), --   for, do, while, etc.
+		Conditional({ fg = text }), --  if, then, else, endif, switch, etc.
+		Repeat(Conditional), --   for, do, while, etc.
 		-- Label          { }, --    case, default, etc.
-		Operator({}), -- "sizeof", "+", "*", etc.
+		Operator(Conditional), -- "sizeof", "+", "*", etc.
+		Keyword(Conditional), --  any other keyword
 		-- Exception      { }, --  try, catch, throw
 
 		PreProc({}), -- (preferred) generic Preprocessor
-		Include({}), --  preprocessor #include
+		Include({ fg = text }), --  preprocessor #include
 		Define({}), --   preprocessor #define
 		Macro({}), --    same as Define
 		PreCondit({}), --  preprocessor #if, #else, #endif, etc.
 
-		Type({}), -- (preferred) int, long, char, etc.
+		Type({ fg = text }), -- (preferred) int, long, char, etc.
 		StorageClass({}), -- static, register, volatile, etc.
-		Structure({}), --  struct, union, enum, etc.
+		Structure({ fg = text }), --  struct, union, enum, etc.
 		Typedef({}), --  A typedef
 
 		Special({}), -- (preferred) any special symbol
