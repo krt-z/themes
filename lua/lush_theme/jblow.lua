@@ -2,8 +2,7 @@
 -- Built with,
 --
 --        ,gggg,
---       d8" "8I                         ,dPYb,
---       88  ,dP                         IP'`Yb
+--       d8" "8I                         ,dPYb, 88  ,dP                         IP'`Yb
 --    8888888P"                          I8  8I
 --       88                              I8  8'
 --       88        gg      gg    ,g,     I8 dPgg,
@@ -46,7 +45,8 @@ local lush = require("lush")
 local hsl = lush.hsl
 
 local bg = hsl(178, 70, 9)
-local text = hsl(37, 18, 64)
+local fg = hsl(37, 18, 64)
+-- local string = hsl(169, 46, 55)
 local string = hsl(169, 46, 55)
 local blue = hsl("#EDFFFF")
 local cursor_line = bg.lighten(2)
@@ -72,18 +72,18 @@ local theme = lush(function()
 
         Comment({ fg = comment }), -- any comment
         -- ColorColumn  { }, -- used for the columns set with 'colorcolumn'
-        -- Conceal      { }, -- placeholder characters substituted for concealed text (see 'conceallevel')
+        -- Conceal      { }, -- placeholder characters substituted for concealed fg (see 'conceallevel')
         -- Cursor       { }, -- character under the cursor
         -- lCursor      { }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
         -- CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
         CursorColumn({}), -- Screen-column at the cursor, when 'cursorcolumn' is set.c
         CursorLine({ bg = cursor_line }), -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-        Directory({ fg = text }), -- directory names (and other special names in listings)
+        Directory({ fg = fg }), -- directory names (and other special names in listings)
         DiffAdd {}, -- diff mode: Added line |diff.txt|
         DiffChange {}, -- diff mode: Changed line |diff.txt|
         -- DiffDelete   { }, -- diff mode: Deleted line |diff.txt|
-        -- DiffText     { }, -- diff mode: Changed text within a changed line |diff.txt|
-        -- EndOfBuffer  { }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
+        -- Difffg     { }, -- diff mode: Changed fg within a changed line |diff.txt|
+        -- EndOfBuffer  { }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-Nonfg|.
         -- TermCursor   { }, -- cursor in a focused terminal
         -- TermCursorNC { }, -- cursor in an unfocused terminal
         -- ErrorMsg     { }, -- error messages on the command line
@@ -91,8 +91,8 @@ local theme = lush(function()
         -- Folded       { }, -- line used for closed folds
         -- FoldColumn   { }, -- 'foldcolumn'
         SignColumn({ bg = bg.lighten(3) }), -- column where |signs| are displayed
-        IncSearch({ bg = blue }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-        -- Substitute   { }, -- |:substitute| replacement text highlighting
+        IncSearch({ bg = blue }), -- 'incsearch' highlighting; also used for the fg replaced with ":s///c"
+        -- Substitute   { }, -- |:substitute| replacement fg highlighting
         -- LineNr       { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
         -- CursorLineNr { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
         MatchParen({ bg = cursor_line.darken(15) }), -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
@@ -100,30 +100,30 @@ local theme = lush(function()
         -- MsgArea      { }, -- Area for messages and cmdline
         -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
         -- MoreMsg      { }, -- |more-prompt|
-        NonText({ Comment }), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-        Normal({ bg = bg, fg = text }), -- normal text
-        -- NormalFloat  { }, -- Normal text in floating windows.
-        -- NormalNC     { }, -- normal text in non-current windows
-        Pmenu({}), -- Popup menu: normal item.
-        -- PmenuSel({ bg = bg.lighten(100) }), -- Popup menu: selected item.
+        Nonfg({ Comment }), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the fg (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+        Normal({ bg = bg, fg = fg }), -- normal fg
+        -- NormalFloat  { }, -- Normal fg in floating windows.
+        -- NormalNC     { }, -- normal fg in non-current windows
+        Pmenu({ fg = fg, bg = bg }), -- Popup menu: normal item.
+        PmenuSel({ fg = string }), -- Popup menu: selected item.
         -- PmenuSbar({}), -- Popup menu: scrollbar.
         -- PmenuThumb({}), -- Popup menu: Thumb of the scrollbar.
         -- Question({}), -- |hit-enter| prompt and yes/no questions
         -- QuickFixLine({}), -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
         Search({ bg = blue }), -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-        -- SpecialKey({}), -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+        -- SpecialKey({}), -- Unprintable characters: fg displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
         -- SpellBad({}), -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
         -- SpellCap({}), -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
         -- SpellLocal({}), -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
         -- SpellRare({}), -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-        StatusLine({ fg = string, bg = string }), -- status line of current window
-        StatusLineNC({ fg = string, bg = string }), -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+        StatusLine({ fg = bg, bg = fg }), -- status line of current window
+        StatusLineNC({ fg = bg.darken(10), bg = fg.darken(10) }), -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
         TabLine({}), -- tab pages line, not active tab page label
         TabLineFill({}), -- tab pages line, where there are no labels
         TabLineSel({}), -- tab pages line, active tab page label
         Title({}), -- titles for output from ":set all", ":autocmd" etc.
-        -- Visual       { bg=cursor_line.darken(5), fg=text}, -- Visual mode selection
-        Visual({ bg = select, fg = text }), -- Visual mode selection
+        -- Visual       { bg=cursor_line.darken(5), fg=fg}, -- Visual mode selection
+        Visual({ bg = bg.lighten(5), fg = fg.darken(5) }), -- Visual mode selection
         VisualNOS({}), -- Visual mode selection when vim is "Not Owning the Selection".
         WarningMsg({}), -- warning messages
         Whitespace({}), -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -149,7 +149,7 @@ local theme = lush(function()
         Conditional({ fg = white }), --  if, then, else, endif, switch, etc.
         Repeat(Conditional), --   for, do, while, etc.
         -- Label          { }, --    case, default, etc.
-        Operator(Conditional), -- "sizeof", "+", "*", etc.
+        Operator({}), -- "sizeof", "+", "*", etc.
         Keyword(Conditional), --  any other keyword
         -- Exception      { }, --  try, catch, throw
 
@@ -171,7 +171,7 @@ local theme = lush(function()
         SpecialComment({}), -- special things inside a comment
         Debug({}), --    debugging statements
 
-        -- Underlined { gui = "underline" }, -- (preferred) text that stands out, HTML links
+        -- Underlined { gui = "underline" }, -- (preferred) fg that stands out, HTML links
         -- Bold       { gui = "bold" },
         -- Italic     { gui = "italic" },
 
@@ -186,7 +186,7 @@ local theme = lush(function()
         -- use these groups, or use their own. Consult your LSP client's
         -- documentation.
 
-        -- LspReferenceText                     { }, -- used for highlighting "text" references
+        -- LspReferencefg                     { }, -- used for highlighting "fg" references
         -- LspReferenceRead                     { }, -- used for highlighting "read" references
         -- LspReferenceWrite                    { }, -- used for highlighting "write" references
 
@@ -195,10 +195,10 @@ local theme = lush(function()
         -- LspDiagnosticsDefaultInformation     { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
         -- LspDiagnosticsDefaultHint            { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 
-        -- LspDiagnosticsVirtualTextError       { }, -- Used for "Error" diagnostic virtual text
-        -- LspDiagnosticsVirtualTextWarning     { }, -- Used for "Warning" diagnostic virtual text
-        -- LspDiagnosticsVirtualTextInformation { }, -- Used for "Information" diagnostic virtual text
-        -- LspDiagnosticsVirtualTextHint        { }, -- Used for "Hint" diagnostic virtual text
+        -- LspDiagnosticsVirtualfgError       { }, -- Used for "Error" diagnostic virtual fg
+        -- LspDiagnosticsVirtualfgWarning     { }, -- Used for "Warning" diagnostic virtual fg
+        -- LspDiagnosticsVirtualfgInformation { }, -- Used for "Information" diagnostic virtual fg
+        -- LspDiagnosticsVirtualfgHint        { }, -- Used for "Hint" diagnostic virtual fg
 
         -- LspDiagnosticsUnderlineError         { }, -- Used to underline "Error" diagnostics
         -- LspDiagnosticsUnderlineWarning       { }, -- Used to underline "Warning" diagnostics
@@ -265,12 +265,12 @@ local theme = lush(function()
 
         -- TSTag                { };    -- Tags like html tag names.
         -- TSTagDelimiter       { };    -- Tag delimiter like `<` `>` `/`
-        -- TSText               { };    -- For strings considered text in a markup language.
-        -- TSEmphasis           { };    -- For text to be represented with emphasis.
-        -- TSUnderline          { };    -- For text to be represented with an underline.
-        -- TSStrike             { };    -- For strikethrough text.
-        -- TSTitle              { };    -- Text that is part of a title.
-        -- TSLiteral            { };    -- Literal text.
+        -- TSfg               { };    -- For strings considered fg in a markup language.
+        -- TSEmphasis           { };    -- For fg to be represented with emphasis.
+        -- TSUnderline          { };    -- For fg to be represented with an underline.
+        -- TSStrike             { };    -- For strikethrough fg.
+        -- TSTitle              { };    -- fg that is part of a title.
+        -- TSLiteral            { };    -- Literal fg.
         -- TSURI                { };    -- Any URI like a link or email.
     }
 end)
