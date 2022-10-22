@@ -83,7 +83,7 @@ local theme = lush(function()
         DiffChange {}, -- diff mode: Changed line |diff.txt|
         -- DiffDelete   { }, -- diff mode: Deleted line |diff.txt|
         -- Difffg     { }, -- diff mode: Changed fg within a changed line |diff.txt|
-        -- EndOfBuffer  { }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-Nonfg|.
+        EndOfBuffer {}, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-Nonfg|.
         -- TermCursor   { }, -- cursor in a focused terminal
         -- TermCursorNC { }, -- cursor in an unfocused terminal
         -- ErrorMsg     { }, -- error messages on the command line
